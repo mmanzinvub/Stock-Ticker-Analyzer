@@ -1,0 +1,4 @@
+Build -> Build Project
+Run -> Run AiSP
+
+Do NOT just build and run main.cpp!!!
