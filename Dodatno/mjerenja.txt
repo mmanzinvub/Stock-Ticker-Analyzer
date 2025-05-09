@@ -9,3 +9,7 @@ time = 85286 ms = 85.28 s
 NAJGORI SLUCAJ:
 n = 34.646.259
 time = 170972 ms = 170.97 s
+
+NAJGORI SLUCAJ (T480s, 24GB RAM):
+n = 34.646.259
+time = 112606 ms = 112.60 s

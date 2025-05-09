@@ -11,7 +11,7 @@ int main() {
 
     auto end_load = std::chrono::high_resolution_clock::now();
     auto duration_load = std::chrono::duration_cast<std::chrono::milliseconds>(end_load - start_load).count();
-    std::cout << "Vrijeme ucitavanja: " << duration_load << " ms." << std::endl;1
+    std::cout << "Vrijeme ucitavanja: " << duration_load << " ms." << std::endl;
 
     // Menu
     int choice;
