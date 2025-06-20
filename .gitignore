@@ -1,0 +1,4 @@
+
+/.idea
+*.csv
+/cmake-build-debug

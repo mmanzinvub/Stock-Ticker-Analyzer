@@ -3,7 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include <chrono>
+#include <unordered_set>
 
+// CSV parsing
 void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -36,24 +38,7 @@ void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
     std::cout << "Ucitano " << lineCount << " linija." << std::endl;
 }
 
-double stockDatabase::averageClose(const std::string& ticker) const {
-    long double sum = 0.0;
-    size_t count = 0;
-    for (const auto& [date, vector] : dateIndex) {
-        for (const auto& data : vector) {
-            if (data.ticker == ticker) {
-                sum += data.close;
-                ++count;
-            }
-        }
-    }
-    if (count == 0) {
-        std::cerr << "Nema zapisa za ticker: " << ticker << std::endl;
-        return 0.0;
-    }
-    return static_cast<double>(sum / static_cast<long double>(count));
-}
-
+// Metoda broji koliko se puta odredeni ticker pojavljuje u skupu podataka
 size_t stockDatabase::countTicker(const std::string& ticker) const {
     size_t count = 0;
     for (const auto& [date, vector] : dateIndex) {
@@ -64,6 +49,7 @@ size_t stockDatabase::countTicker(const std::string& ticker) const {
     return count;
 }
 
+// 1. Dohvati sve podatke o dionicama za određeni datum.
 void stockDatabase::printStockData(const std::string& date) const {
     auto it = dateIndex.find(date);
     if (it == dateIndex.end()) {
@@ -83,3 +69,79 @@ void stockDatabase::printStockData(const std::string& date) const {
             << std::endl;
     }
 }
+
+// 2. Izračunaj prosječnu završnu cijenu određene dionice u cijelom skupu podataka
+double stockDatabase::averageClose(const std::string& ticker) const {
+    long double sum = 0.0;
+    size_t count = 0;
+    for (const auto& [date, vector] : dateIndex) {
+        for (const auto& data : vector) {
+            if (data.ticker == ticker) {
+                sum += data.close;
+                ++count;
+            }
+        }
+    }
+    if (count == 0) {
+        std::cerr << "Nema zapisa za ticker: " << ticker << std::endl;
+        return 0.0;
+    }
+    return static_cast<double>(sum / static_cast<long double>(count));
+}
+
+// 3. Pronađi najvišu cijenu za određenu dionicu u zadanom vremenskom razdoblju.
+double stockDatabase::maxHighInRange(const std::string& ticker, const std::string& startDate, const std::string& endDate) const {
+    long double maxHigh = -1.0;
+    for (const auto& [date, records] : dateIndex) {
+        if (date >= startDate && date <= endDate) {
+            for (const auto& data : records) {
+                if (data.ticker == ticker && data.high > maxHigh) {
+                    maxHigh = data.high;
+                }
+            }
+        }
+    }
+    return static_cast<double>(maxHigh);
+}
+
+// 4. Identificiraj sve jedinstvene oznake dionica u skupu podataka
+std::unordered_set<std::string> stockDatabase::uniqueTickers() const {
+    std::unordered_set<std::string> tickers;
+    for (const auto& [date, vector] : dateIndex) {
+        for (const auto& data : vector) {
+            tickers.insert(data.ticker);
+        }
+    }
+    return tickers;
+}
+
+// 5. Provjeri postoji li određena oznaka dionice u skupu podataka
+bool stockDatabase::tickerExists(const std::string& ticker) const {
+    for (const auto& [date, vector] : dateIndex) {
+        for (const auto& data : vector) {
+            if (data.ticker == ticker) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+// 6. Izbroji broj datuma kada je barem jedna dionica imala završnu cijenu iznad određenog praga
+size_t stockDatabase::countDatesWithCloseAbove(long double threshold) const {
+    size_t count = 0;
+    for (const auto& [date, vector] : dateIndex) {
+        // Za svaki datum provjeri ima li barem jedan close iznad praga
+        bool found = false;
+        for (const auto& data : vector) {
+            if (data.close > threshold) {
+                found = true;
+                break; // čim nađeš, ne treba dalje gledati taj datum
+            }
+        }
+        if (found) ++count;
+    }
+    return count;
+}
+
+// 7. Dohvati završnu cijenu određene dionice za određeni datum

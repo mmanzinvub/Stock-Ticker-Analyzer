@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #pragma once
 
 struct stockData {
@@ -24,9 +25,28 @@ private:
     size_t lineCount = 0;
 public:
     void loadCSV(const std::string& filename, size_t max_lines = 34646259);
-    double averageClose(const std::string& ticker) const;
+
     size_t countTicker(const std::string& ticker) const;
+
+    // 1. Dohvati sve podatke o dionicama za određeni datum
     void printStockData(const std::string& date) const;
+
+    // 2. Izračunaj prosječnu završnu cijenu određene dionice u cijelom skupu podataka
+    double averageClose(const std::string& ticker) const;
+
+    // 3. Pronađi najvišu cijenu za određenu dionicu u zadanom vremenskom razdoblju
+    double maxHighInRange(const std::string& ticker, const std::string& startDate, const std::string& endDate) const;
+
+    // 4. Identificiraj sve jedinstvene oznake dionica u skupu podataka
+    std::unordered_set<std::string> uniqueTickers() const;
+
+    // 5. Provjeri postoji li određena oznaka dionice u skupu podataka
+    bool tickerExists(const std::string& ticker) const;
+
+    // 6. Izbroji broj datuma kada je barem jedna dionica imala završnu cijenu iznad određenog praga
+    size_t countDatesWithCloseAbove(long double threshold) const;
+
+    // 7. Dohvati završnu cijenu određene dionice za određeni datum
 };
 
 #endif //STOCKDATABASE_HPP
