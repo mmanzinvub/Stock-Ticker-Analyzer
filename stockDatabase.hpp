@@ -47,6 +47,7 @@ public:
     size_t countDatesWithCloseAbove(long double threshold) const;
 
     // 7. Dohvati završnu cijenu određene dionice za određeni datum
+
 };
 
 #endif //STOCKDATABASE_HPP

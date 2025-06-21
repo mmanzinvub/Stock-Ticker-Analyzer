@@ -10,7 +10,7 @@
 void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
     std::ifstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Datoteka se ne može otvoriti!" << std::endl;
+        std::cerr << "Datoteka se ne moze otvoriti!" << std::endl;
         return;
     }
     std::string line;
@@ -24,47 +24,15 @@ void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
 
         std::getline(ss, date, ',');
         std::getline(ss, data.ticker, ',');
-        std::getline(ss, item, ',');
-        try {
-            data.open = item.empty() ? 0.0 : std::stod(item);
-            if (std::isnan(data.open) || std::isinf(data.open) || data.open < 0.0 || data.open > 1e6) data.open = 0.0;
-        } catch (...) { data.open = 0.0; }
-
-        std::getline(ss, item, ',');
-        try {
-            data.high = item.empty() ? 0.0 : std::stold(item);
-            if (std::isnan(data.high) || std::isinf(data.high) || data.high < 0.0 || data.high > 1e6) data.high = 0.0;
-        } catch (...) { data.high = 0.0; }
-
-        std::getline(ss, item, ',');
-        try {
-            data.low = item.empty() ? 0.0 : std::stold(item);
-            if (std::isnan(data.low) || std::isinf(data.low) || data.low < 0.0 || data.low > 1e6) data.low = 0.0;
-        } catch (...) { data.low = 0.0; }
-
-        std::getline(ss, item, ',');
-        try {
-            data.close = item.empty() ? 0.0 : std::stold(item);
-            if (std::isnan(data.close) || std::isinf(data.close) || data.close < 0.0 || data.close > 1e6) data.close = 0.0;
-        } catch (...) { data.close = 0.0; }
-
-        std::getline(ss, item, ',');
-        try {
-            data.volume = item.empty() ? 0.0 : std::stod(item);
-            if (std::isnan(data.volume) || std::isinf(data.volume) || data.volume < 0.0 || data.volume > 1e12) data.volume = 0.0;
-        } catch (...) { data.volume = 0.0; }
-
-        std::getline(ss, item, ',');
-        try {
-            data.dividends = item.empty() ? 0.0 : std::stod(item);
-            if (std::isnan(data.dividends) || std::isinf(data.dividends) || data.dividends < 0.0 || data.dividends > 1e6) data.dividends = 0.0;
-        } catch (...) { data.dividends = 0.0; }
-
-        std::getline(ss, item, ',');
-        try {
-            data.stockSplits = item.empty() ? 0.0 : std::stod(item);
-            if (std::isnan(data.stockSplits) || std::isinf(data.stockSplits) || data.stockSplits < 0.0 || data.stockSplits > 100.0) data.stockSplits = 0.0;
-        } catch (...) { data.stockSplits = 0.0; }
+        std::getline(ss, data.ticker, ',');
+        if (data.ticker == "PTPIF") continue;
+        std::getline(ss, item, ','); data.open = item.empty() ? 0.0 : std::stod(item);
+        std::getline(ss, item, ','); data.high = item.empty() ? 0.0 : std::stold(item);
+        std::getline(ss, item, ','); data.low = item.empty() ? 0.0 : std::stold(item);
+        std::getline(ss, item, ','); data.close = item.empty() ? 0.0 : std::stold(item);
+        std::getline(ss, item, ','); data.volume = item.empty() ? 0.0 : std::stod(item);
+        std::getline(ss, item, ','); data.dividends = item.empty() ? 0.0 : std::stod(item);
+        std::getline(ss, item, ','); data.stockSplits = item.empty() ? 0.0 : std::stod(item);
 
         dateIndex[date].push_back(data);
         ++count;
@@ -166,12 +134,11 @@ bool stockDatabase::tickerExists(const std::string& ticker) const {
 size_t stockDatabase::countDatesWithCloseAbove(long double threshold) const {
     size_t count = 0;
     for (const auto& [date, vector] : dateIndex) {
-        // Za svaki datum provjeri ima li barem jedan close iznad praga
         bool found = false;
         for (const auto& data : vector) {
             if (data.close > threshold) {
                 found = true;
-                break; // čim nađeš, ne treba dalje gledati taj datum
+                break;
             }
         }
         if (found) ++count;
