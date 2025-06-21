@@ -24,7 +24,6 @@ void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
 
         std::getline(ss, date, ',');
         std::getline(ss, data.ticker, ',');
-        std::getline(ss, data.ticker, ',');
         if (data.ticker == "PTPIF") continue;
         std::getline(ss, item, ','); data.open = item.empty() ? 0.0 : std::stod(item);
         std::getline(ss, item, ','); data.high = item.empty() ? 0.0 : std::stold(item);
