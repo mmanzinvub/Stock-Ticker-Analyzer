@@ -6,6 +6,14 @@
 #include <cmath>
 #include <unordered_set>
 
+// CSV ticker blacklist
+const std::unordered_set<std::string> blacklist = {
+    "PTPIF", "BMNR", "IDEX",
+    "SNWR", "NDEKF", "MSSV",
+    "TMGI", "TETAB", "SMFNF",
+    "PPERF", "FANUF", "NPPXF"
+};
+
 // CSV parsing
 void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
     std::ifstream file(filename);
@@ -14,7 +22,7 @@ void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
         return;
     }
     std::string line;
-    std::getline(file, line); // preskoči header
+    std::getline(file, line);
 
     size_t count = 0;
     while (std::getline(file, line) && count < max_lines) {
@@ -24,7 +32,11 @@ void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
 
         std::getline(ss, date, ',');
         std::getline(ss, data.ticker, ',');
-        if (data.ticker == "PTPIF") continue;
+
+        if (blacklist.find(data.ticker) != blacklist.end()) {
+            continue;
+        }
+
         std::getline(ss, item, ','); data.open = item.empty() ? 0.0 : std::stod(item);
         std::getline(ss, item, ','); data.high = item.empty() ? 0.0 : std::stold(item);
         std::getline(ss, item, ','); data.low = item.empty() ? 0.0 : std::stold(item);

@@ -6,6 +6,8 @@
 #include <unordered_set>
 #pragma once
 
+extern const std::unordered_set<std::string> blacklist;
+
 struct stockData {
     std::string ticker;
     double open;
