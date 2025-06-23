@@ -1,17 +1,10 @@
 #include "stockDatabase.hpp"
 #include <iostream>
-#include <chrono>
 
 int main() {
     stockDatabase db;
 
-    auto start_load = std::chrono::high_resolution_clock::now();
-
     db.loadCSV("../all_stock_data.csv", 34646259);
-
-    auto end_load = std::chrono::high_resolution_clock::now();
-    auto duration_load = std::chrono::duration_cast<std::chrono::milliseconds>(end_load - start_load).count();
-    std::cout << "Vrijeme ucitavanja: " << duration_load << " ms." << std::endl;
 
     // Menu
     int choice;
@@ -40,16 +33,13 @@ int main() {
                 std::cout << "Unesi ticker dionice: ";
                 std::cin >> query_ticker;
 
-                auto start = std::chrono::high_resolution_clock::now();
                 double avg = db.averageClose(query_ticker);
-                auto end = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
                 size_t count = db.countTicker(query_ticker);
 
                 if (count > 0) {
                     std::cout << "Prosjecna zavrsna cijena za " << query_ticker << " je " << avg
-                              << " (" << count << " zapisa) [" << duration << " ms]\n" << std::endl;
+                              << " (" << count << " zapisa)" << std::endl;
                 }
                 break;
             }
@@ -62,26 +52,20 @@ int main() {
                 std::cout << "Unesi zavrsni datum (GGGG-MM-DD): ";
                 std::cin >> end_date;
 
-                auto start = std::chrono::high_resolution_clock::now();
                 double maxHigh = db.maxHighInRange(query_ticker, start_date, end_date);
-                auto end = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
                 if (maxHigh >= 0) {
                     std::cout << "Najvisa cijena za " << query_ticker << " od " << start_date << " do " << end_date
-                              << " je " << maxHigh << " [" << duration << " ms]\n" << std::endl;
+                              << " je " << maxHigh << std::endl;
                 } else {
                     std::cout << "Nema podataka za zadani ticker i raspon datuma\n";
                 }
                 break;
             }
             case 4: {
-                auto start = std::chrono::high_resolution_clock::now();
                 auto tickers = db.uniqueTickers();
-                auto end = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
-                std::cout << "Jedinstveni tickeri (" << tickers.size() << ") [" << duration << " ms]\n" << std::endl;
+                std::cout << "Jedinstveni tickeri (" << tickers.size() << ")" << std::endl;
                 for (const auto& t : tickers) {
                     std::cout << t << "\n";
                 }
@@ -91,14 +75,13 @@ int main() {
                 std::string query_ticker;
                 std::cout << "Unesi ticker koji zelis provjeriti: ";
                 std::cin >> query_ticker;
-                auto start = std::chrono::high_resolution_clock::now();
+
                 bool exists = db.tickerExists(query_ticker);
-                auto end = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+
                 if (exists) {
-                    std::cout << "Ticker " << query_ticker << " postoji u skupu podataka [" << duration << " ms]\n" << std::endl;
+                    std::cout << "Ticker " << query_ticker << " postoji u skupu podataka" << std::endl;
                 } else {
-                    std::cout << "Ticker " << query_ticker << " NE postoji u skupu podataka [" << duration << " ms]\n" << std::endl;
+                    std::cout << "Ticker " << query_ticker << " NE postoji u skupu podataka" << std::endl;
                 }
                 break;
             }
@@ -107,13 +90,10 @@ int main() {
                 std::cout << "Unesi prag za zavrsnu cijenu (close): ";
                 std::cin >> prag;
 
-                auto start = std::chrono::high_resolution_clock::now();
                 size_t broj_datuma = db.countDatesWithCloseAbove(prag);
-                auto end = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
                 std::cout << "Broj datuma s barem jednom dionicom cija je close cijena iznad " << prag
-                          << " je: " << broj_datuma << " [" << duration << " ms]\n" << std::endl;
+                          << " je: " << broj_datuma << std::endl;
                 break;
             }
             case 0:

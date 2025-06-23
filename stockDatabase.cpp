@@ -2,8 +2,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <chrono>
-#include <cmath>
 #include <unordered_set>
 
 // CSV ticker blacklist
