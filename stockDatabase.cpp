@@ -19,6 +19,7 @@ void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
         std::cerr << "Datoteka se ne moze otvoriti!" << std::endl;
         return;
     }
+
     std::string line;
     std::getline(file, line);
 
@@ -31,17 +32,30 @@ void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
         std::getline(ss, date, ',');
         std::getline(ss, data.ticker, ',');
 
-        if (blacklist.find(data.ticker) != blacklist.end()) {
+        if (blacklist.count(data.ticker)) {
             continue;
         }
 
-        std::getline(ss, item, ','); data.open = item.empty() ? 0.0 : std::stod(item);
-        std::getline(ss, item, ','); data.high = item.empty() ? 0.0 : std::stold(item);
-        std::getline(ss, item, ','); data.low = item.empty() ? 0.0 : std::stold(item);
-        std::getline(ss, item, ','); data.close = item.empty() ? 0.0 : std::stold(item);
-        std::getline(ss, item, ','); data.volume = item.empty() ? 0.0 : std::stod(item);
-        std::getline(ss, item, ','); data.dividends = item.empty() ? 0.0 : std::stod(item);
-        std::getline(ss, item, ','); data.stockSplits = item.empty() ? 0.0 : std::stod(item);
+        std::getline(ss, item, ',');
+        data.open = item.empty() ? 0.0 : std::stod(item);
+
+        std::getline(ss, item, ',');
+        data.high = item.empty() ? 0.0 : std::stold(item);
+
+        std::getline(ss, item, ',');
+        data.low = item.empty() ? 0.0 : std::stold(item);
+
+        std::getline(ss, item, ',');
+        data.close = item.empty() ? 0.0 : std::stold(item);
+
+        std::getline(ss, item, ',');
+        data.volume = item.empty() ? 0.0 : std::stod(item);
+
+        std::getline(ss, item, ',');
+        data.dividends = item.empty() ? 0.0 : std::stod(item);
+
+        std::getline(ss, item, ',');
+        data.stockSplits = item.empty() ? 0.0 : std::stod(item);
 
         dateIndex[date].push_back(data);
         ++count;
