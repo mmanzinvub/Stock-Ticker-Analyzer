@@ -49,7 +49,7 @@ public:
     size_t countDatesWithCloseAbove(long double threshold) const;
 
     // 7. Dohvati završnu cijenu određene dionice za određeni datum
-
+    long double getCloseForTickerOnDate(const std::string& ticker, std::string& date) const;
 };
 
 #endif //STOCKDATABASE_HPP

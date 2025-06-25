@@ -118,9 +118,9 @@ double stockDatabase::averageClose(const std::string& ticker) const {
 // 3. Pronađi najvišu cijenu za određenu dionicu u zadanom vremenskom razdoblju.
 double stockDatabase::maxHighInRange(const std::string& ticker, const std::string& startDate, const std::string& endDate) const {
     long double maxHigh = -1.0;
-    for (const auto& [date, records] : dateIndex) {
+    for (const auto& [date, vector] : dateIndex) {
         if (date >= startDate && date <= endDate) {
-            for (const auto& data : records) {
+            for (const auto& data : vector) {
                 if (data.ticker == ticker && data.high > maxHigh) {
                     maxHigh = data.high;
                 }
@@ -170,3 +170,17 @@ size_t stockDatabase::countDatesWithCloseAbove(long double threshold) const {
 }
 
 // 7. Dohvati završnu cijenu određene dionice za određeni datum
+long double stockDatabase::getCloseForTickerOnDate(const std::string& ticker, std::string& date) const {
+    auto it = dateIndex.find(date);
+    if (it == dateIndex.end()) {
+        return -1.0;
+    }
+
+    for (const auto& data : it->second) {
+        if (data.ticker == ticker) {
+            return data.close;
+        }
+    }
+    return -1.0;
+}
+

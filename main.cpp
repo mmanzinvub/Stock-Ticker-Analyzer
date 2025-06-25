@@ -1,5 +1,6 @@
 #include "stockDatabase.hpp"
 #include <iostream>
+#include <unistd.h>
 
 int main() {
     stockDatabase db;
@@ -16,6 +17,7 @@ int main() {
         std::cout << "4. Pronadi sve jedinstvene oznake dionica\n";
         std::cout << "5. Pronadi odredenu dionicu\n";
         std::cout << "6. Broj datuma s barem jednom dionicom cija je close cijena iznad zadanog praga\n";
+        std::cout << "7. Dohvati zavrsnu cijenu odredene dionice za odredeni datum\n";
         std::cout << "0. Izlaz\n";
         std::cout << "Unesi izbor: ";
         std::cin >> choice;
@@ -94,6 +96,24 @@ int main() {
 
                 std::cout << "Broj datuma s barem jednom dionicom cija je close cijena iznad " << prag
                           << " je: " << broj_datuma << std::endl;
+                break;
+            }
+            case 7: {
+                std::string query_ticker;
+                std::cout << "Unesi ticker koji zelis provjeriti: ";
+                std::cin >> query_ticker;
+                std::string query_date;
+                std::cout << "Unesi datum (GGGG-MM-DD): ";
+                std::cin >> query_date;
+
+                long double closePriceDate = db.getCloseForTickerOnDate(query_ticker, query_date);
+
+                if (closePriceDate >= 0) {
+                    std::cout << "Zavrsna cijena za " << query_ticker << " na " << query_date
+                    << " je " << closePriceDate << std::endl;
+                } else {
+                    std::cout << "Nema podataka za zadani ticker i datum\n";
+                }
                 break;
             }
             case 0:
