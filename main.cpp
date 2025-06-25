@@ -20,6 +20,12 @@ int main() {
         std::cout << "7. Dohvati zavrsnu cijenu odredene dionice za odredeni datum\n";
         std::cout << "8. Ispisi sve datume i zavrsne cijene za ticker\n";
         std::cout << "9. Izračunaj ukupni volumen trgovanja za određenu dionicu kroz cijeli skup podataka\n";
+        std::cout << "10. Provjera podataka za određeni datum i određenu dionicu\n";
+        std::cout << "11. Dohvati cijene otvaranja i zatvaranja za određenu dionicu i datum u konstantnom vremenu\n";
+        std::cout << "12. Pronađi iznos dividendi isplacenih za određenu dionicu na određeni datum\n";
+        std::cout << "13. Pronađi 10 dionica s najvećim volumenom trgovanja na određeni datum\n";
+        std::cout << "14. Dohvati 5 dionica s najnižim završnim cijenama kroz cijeli skup podataka\n";
+        std::cout << "15. Održavaj popis 5 dionica s najvećim isplaćenim dividendama tijekom cijelog razdoblja skupa podataka\n";
         std::cout << "0. Izlaz\n";
         std::cout << "Unesi izbor: ";
         std::cin >> choice;
@@ -128,7 +134,27 @@ int main() {
                 break;
             }
             case 9: {
+                std::string query_ticker;
+                std::cout << "Unesi ticker za koji zelis izracunati ukupni volumen trgovanja: ";
+                std::cin >> query_ticker;
 
+                long double totalVolume = db.totalVolumeForTicker(query_ticker);
+
+                std::cout << "Ukupni volumen trgovanja za " << query_ticker << " je: " << totalVolume << std::endl;
+                break;
+            }
+            case 10: {
+                std::string query_ticker, query_date;
+                std::cout << "Unesi ticker: ";
+                std::cin >> query_ticker;
+                std::cout << "Unesi datum (GGGG-MM-DD): ";
+                std::cin >> query_date;
+
+                if (db.existsRecord(query_ticker, query_date)) {
+                    std::cout << "Podaci postoje za " << query_ticker << " na datum " << query_date << "." << std::endl;
+                } else {
+                    std::cout << "Nema podataka za " << query_ticker << " na datum " << query_date << "." << std::endl;
+                }
             }
             case 0:
                 std::cout << "Izlaz iz programa\n";

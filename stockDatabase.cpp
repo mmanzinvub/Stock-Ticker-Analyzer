@@ -201,3 +201,30 @@ void stockDatabase::printDateAndCloseForTicker(const std::string& ticker) const 
 }
 
 // 9. Izračunaj ukupni volumen trgovanja za određenu dionicu kroz cijeli skup podataka
+long double stockDatabase::totalVolumeForTicker(const std::string& ticker) const {
+    long double totalVolume = 0.0;
+    for (const auto& [date, vector] : dateIndex) {
+        for (const auto& data : vector) {
+            if (data.ticker == ticker) {
+                totalVolume += data.volume;
+            }
+        }
+    }
+    return totalVolume;
+}
+
+// 10. Provjeri ima li podataka za određeni datum i određenu dionicu
+bool stockDatabase::existsRecord(const std::string& ticker, const std::string& date) const {
+    auto it = dateIndex.find(date);
+    if (it == dateIndex.end()) {
+        return false;
+    }
+    for (const auto& data : it->second) {
+        if (data.ticker == ticker) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// 11. Dohvati cijene otvaranja i zatvaranja za određenu dionicu i datum u konstantnom vremenu.

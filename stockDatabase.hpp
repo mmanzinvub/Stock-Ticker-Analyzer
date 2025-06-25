@@ -55,7 +55,13 @@ public:
     void printDateAndCloseForTicker(const std::string& ticker) const;
 
     // 9. Izračunaj ukupni volumen trgovanja za određenu dionicu kroz cijeli skup podataka
-    
+    long double totalVolumeForTicker(const std::string& ticker) const;
+
+    // 10. Provjeri ima li podataka za određeni datum i određenu dionicu
+    bool existsRecord(const std::string& ticker, const std::string& date) const;
+
+    // 11. Dohvati cijene otvaranja i zatvaranja za određenu dionicu i datum u konstantnom vremenu.
+
 };
 
 #endif //STOCKDATABASE_HPP
