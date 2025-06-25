@@ -7,8 +7,6 @@ int main() {
 
     db.loadCSV("../all_stock_data.csv", 34646259);
 
-    db.buildOpenCloseIndex();
-
     // Menu
     int choice;
     do {
@@ -167,10 +165,12 @@ int main() {
                 std::cin >> date;
 
                 auto [open, close] = db.getOpenAndClose(ticker, date);
+
                 if (open >= 0 && close >= 0) {
-                    std::cout << "Open: " << open << ", Close: " << close << std::endl;
+                    std::cout << "Cijena otvaranja za " << ticker << " na " << date << " je: " << open << std::endl;
+                    std::cout << "Cijena zatvaranja za " << ticker << " na " << date << " je: " << close << std::endl;
                 } else {
-                    std::cout << "Nema podatka za taj ticker i datum." << std::endl;
+                    std::cout << "Nema podataka za ticker '" << ticker << "' na datum " << date << "." << std::endl;
                 }
                 break;
             }

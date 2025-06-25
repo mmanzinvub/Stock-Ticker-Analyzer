@@ -228,24 +228,17 @@ bool stockDatabase::existsRecord(const std::string& ticker, const std::string& d
 }
 
 // 11. Dohvati cijene otvaranja i zatvaranja za određenu dionicu i datum u konstantnom vremenu
-void stockDatabase::buildOpenCloseIndex() {
-    fastIndex.clear();
-    for (const auto& [date, vector] : dateIndex) {
-        for (const auto& data : vector) {
-            std::string key = date + "|" + data.ticker;
-            fastIndex[key] = data;
-        }
-    }
-}
-
 std::pair<long double, long double> stockDatabase::getOpenAndClose(const std::string& ticker, const std::string& date) const {
-    std::string key = date + "|" + ticker;
-    auto it = fastIndex.find(key);
-    if (it != fastIndex.end()) {
-        return {it->second.open, it->second.close};
-    } else {
+    auto it = dateIndex.find(date);
+    if (it == dateIndex.end()) {
         return {-1.0, -1.0};
     }
+    for (const auto& data : it->second) {
+        if (data.ticker == ticker) {
+            return {data.open, data.close};
+        }
+    }
+    return {-1.0, -1.0};
 }
 
 // 12. Pronađi iznos dividendi isplacenih za određenu dionicu na određeni datum

@@ -25,8 +25,6 @@ class stockDatabase {
 private:
     stockHash dateIndex;
     size_t lineCount = 0;
-
-    std::unordered_map<std::string, stockData> fastIndex;
 public:
     void loadCSV(const std::string& filename, size_t max_lines = 34646259);
 
@@ -63,7 +61,6 @@ public:
     bool existsRecord(const std::string& ticker, const std::string& date) const;
 
     // 11. Dohvati cijene otvaranja i zatvaranja za određenu dionicu i datum u konstantnom vremenu.
-    void buildOpenCloseIndex();
     std::pair<long double, long double> getOpenAndClose(const std::string& ticker, const std::string& date) const;
 
     // 12. Pronađi iznos dividendi isplacenih za određenu dionicu na određeni datum
