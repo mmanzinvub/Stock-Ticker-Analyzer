@@ -155,6 +155,37 @@ int main() {
                 } else {
                     std::cout << "Nema podataka za " << query_ticker << " na datum " << query_date << "." << std::endl;
                 }
+                break;
+            }
+            case 11: {
+                std::string ticker, date;
+                std::cout << "Unesi ticker: ";
+                std::cin >> ticker;
+                std::cout << "Unesi datum (GGGG-MM-DD): ";
+                std::cin >> date;
+
+                auto [open, close] = db.getOpenAndClose(ticker, date);
+                if (open >= 0 && close >= 0) {
+                    std::cout << "Open: " << open << ", Close: " << close << std::endl;
+                } else {
+                    std::cout << "Nema podatka za taj ticker i datum." << std::endl;
+                }
+                break;
+            }
+            case 12: {
+                std::string ticker, date;
+                std::cout << "Unesi ticker: ";
+                std::cin >> ticker;
+                std::cout << "Unesi datum (GGGG-MM-DD): ";
+                std::cin >> date;
+
+                long double dividend = db.dividendForTickerOnDate(ticker, date);
+                if (dividend >= 0) {
+                    std::cout << "Dividenda za " << ticker << " na datum " << date << " je: " << dividend << std::endl;
+                } else {
+                    std::cout << "Nema podataka o dividendi za taj ticker i datum." << std::endl;
+                }
+                break;
             }
             case 0:
                 std::cout << "Izlaz iz programa\n";
