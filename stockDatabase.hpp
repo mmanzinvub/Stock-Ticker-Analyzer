@@ -50,6 +50,12 @@ public:
 
     // 7. Dohvati završnu cijenu određene dionice za određeni datum
     long double getCloseForTickerOnDate(const std::string& ticker, std::string& date) const;
+
+    // 8. Prikaži sve datume i odgovarajuće završne cijene za određenu dionicu
+    void printDateAndCloseForTicker(const std::string& ticker) const;
+
+    // 9. Izračunaj ukupni volumen trgovanja za određenu dionicu kroz cijeli skup podataka
+    
 };
 
 #endif //STOCKDATABASE_HPP

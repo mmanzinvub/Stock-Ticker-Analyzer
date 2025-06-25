@@ -184,3 +184,20 @@ long double stockDatabase::getCloseForTickerOnDate(const std::string& ticker, st
     return -1.0;
 }
 
+// 8. Prikaži sve datume i odgovarajuće završne cijene za određenu dionicu
+void stockDatabase::printDateAndCloseForTicker(const std::string& ticker) const {
+    bool found = false;
+    for (const auto& [date, vector] : dateIndex) {
+        for (const auto& data : vector) {
+            if (data.ticker == ticker) {
+                std::cout << date << " : " << data.close << std::endl;
+                found = true;
+            }
+        }
+    }
+    if (found == false) {
+        std::cout << "Nema podataka za ticker: " << ticker << std::endl;
+    }
+}
+
+// 9. Izračunaj ukupni volumen trgovanja za određenu dionicu kroz cijeli skup podataka

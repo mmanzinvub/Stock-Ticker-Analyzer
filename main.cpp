@@ -18,6 +18,8 @@ int main() {
         std::cout << "5. Pronadi odredenu dionicu\n";
         std::cout << "6. Broj datuma s barem jednom dionicom cija je close cijena iznad zadanog praga\n";
         std::cout << "7. Dohvati zavrsnu cijenu odredene dionice za odredeni datum\n";
+        std::cout << "8. Ispisi sve datume i zavrsne cijene za ticker\n";
+        std::cout << "9. Izračunaj ukupni volumen trgovanja za određenu dionicu kroz cijeli skup podataka\n";
         std::cout << "0. Izlaz\n";
         std::cout << "Unesi izbor: ";
         std::cin >> choice;
@@ -115,6 +117,18 @@ int main() {
                     std::cout << "Nema podataka za zadani ticker i datum\n";
                 }
                 break;
+            }
+            case 8: {
+                std::string query_ticker;
+                std::cout << "Unesi ticker za koji zelis ispisati sve datume i zavrsne cijene: ";
+                std::cin >> query_ticker;
+
+                db.printDateAndCloseForTicker(query_ticker);
+
+                break;
+            }
+            case 9: {
+
             }
             case 0:
                 std::cout << "Izlaz iz programa\n";
