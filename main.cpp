@@ -7,6 +7,8 @@ int main() {
 
     db.loadCSV("../all_stock_data.csv", 34646259);
 
+    db.buildOpenCloseIndex();
+
     // Menu
     int choice;
     do {
