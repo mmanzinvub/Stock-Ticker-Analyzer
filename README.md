@@ -52,3 +52,58 @@ PAX | Open: 11.65 | High: 11.84 | Low: 11.625 | Close: 11.8 | Volume: 68866 | Di
 ``Najvisa cijena za MSFT od 1986-03-13 do 2024-11-04 je 468.35``
 
 ``Vrijeme ucitavanja za opciju 3: 1040 ms``
+
+### 4. Identificiraj sve jedinstvene oznake dionica u skupu podataka
+
+``Unesi izbor: 4``
+
+``Jedinstveni tickeri (9315)
+CHKEL
+GRAMW
+LGNZZ
+INR
+CHAR
+GACW
+CHNEY
+ISMCF
+IVHI
+O-P
+CSR-PC
+AUDAQ
+SMKUF
+SWN
+PRFT
+SMKUY
+BACA
+LCW
+RPHM
+HMNF
+GDL-PC
+TELL
+WHLRL
+GECCM
+TMDIF
+GEHDY
+RBCP``
+
+``Vrijeme ucitavanja za opciju 4: 4858 ms``
+
+### 5. Provjeri postoji li određena oznaka dionice u skupu podataka
+
+``Unesi izbor: 5``
+
+``Unesi ticker koji zelis provjeriti: IBM``
+
+``Ticker IBM postoji u skupu podataka``
+
+``Vrijeme ucitavanja za opciju 5: 0 ms``
+
+### 6. Izbroji broj datuma kada je barem jedna dionica imala završnu cijenu iznad određenog praga.
+
+``Unesi izbor: 6``
+
+``Unesi prag za zavrsnu cijenu (close): 500``
+
+``Broj datuma s barem jednom dionicom cija je close cijena iznad 500 je: 11265``
+
+``Vrijeme ucitavanja za opciju 6: 14 ms``
