@@ -9,6 +9,7 @@
 extern const std::unordered_set<std::string> blacklist;
 
 struct stockData {
+    std::string date;
     std::string ticker;
     double open;
     long double high;
@@ -67,6 +68,16 @@ public:
     long double dividendForTickerOnDate(const std::string& ticker, const std::string& date) const;
 
     // 13. Pronađi 10 dionica s najvećim volumenom trgovanja na određeni datum
+    void top10ByVolume(const std::string& date) const;
+
+    // 14. Dohvati 5 dionica s najnižim završnim cijenama kroz cijeli skup podataka
+    void printLowestCloseStocks() const;
+
+    // 15. Održavaj popis 5 dionica s najvećim isplaćenim dividendama tijekom cijelog razdoblja skupa podataka
+    void printTopDividendStocks() const;
+
+    // Rucni unos tickera u skup podataka
+    void manualInsertRecord();
 };
 
 #endif //STOCKDATABASE_HPP

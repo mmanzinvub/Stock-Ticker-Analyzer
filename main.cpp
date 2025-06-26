@@ -5,7 +5,8 @@
 int main() {
     stockDatabase db;
 
-    db.loadCSV("../all_stock_data.csv", 34646259);
+    // max 34646259
+    db.loadCSV("../all_stock_data.csv", 1000000);
 
     // Menu
     int choice;
@@ -26,6 +27,7 @@ int main() {
         std::cout << "13. Pronađi 10 dionica s najvećim volumenom trgovanja na određeni datum\n";
         std::cout << "14. Dohvati 5 dionica s najnižim završnim cijenama kroz cijeli skup podataka\n";
         std::cout << "15. Održavaj popis 5 dionica s najvećim isplaćenim dividendama tijekom cijelog razdoblja skupa podataka\n";
+        std::cout << "-1. Rucni unos u skup podataka\n";
         std::cout << "0. Izlaz\n";
         std::cout << "Unesi izbor: ";
         std::cin >> choice;
@@ -187,6 +189,26 @@ int main() {
                 } else {
                     std::cout << "Nema podataka o dividendi za taj ticker i datum." << std::endl;
                 }
+                break;
+            }
+            case 13: {
+                std::string datum;
+                std::cout << "Unesi datum (GGGG-MM-DD): ";
+                std::cin >> datum;
+
+                db.top10ByVolume(datum);
+                break;
+            }
+            case 14: {
+                db.printLowestCloseStocks();
+                break;
+            }
+            case 15: {
+                db.printTopDividendStocks();
+                break;
+            }
+            case -1: {
+                db.manualInsertRecord();
                 break;
             }
             case 0:

@@ -1,6 +1,9 @@
 #include "stockDatabase.hpp"
+
+#include <algorithm>
 #include <iostream>
 #include <fstream>
+#include <set>
 #include <sstream>
 #include <unordered_set>
 
@@ -57,6 +60,7 @@ void stockDatabase::loadCSV(const std::string& filename, size_t max_lines) {
         std::getline(ss, item, ',');
         data.stockSplits = item.empty() ? 0.0 : std::stod(item);
 
+        data.date = date;
         dateIndex[date].push_back(data);
         ++count;
     }
@@ -256,3 +260,104 @@ long double stockDatabase::dividendForTickerOnDate(const std::string& ticker, co
 }
 
 // 13. Pronađi 10 dionica s najvećim volumenom trgovanja na određeni datum
+void stockDatabase::top10ByVolume(const std::string& date) const {
+    auto it = dateIndex.find(date);
+    if (it == dateIndex.end()) {
+        std::cout << "Nema podataka za taj datum." << std::endl;
+        return;
+    }
+
+    std::vector<stockData> stocks = it->second;
+
+    std::sort(stocks.begin(), stocks.end(), [](const stockData& a, const stockData& b) {
+        return a.volume > b.volume;
+    });
+
+    int n = std::min(10, (int)stocks.size());
+    std::cout << "Top " << n << " dionica po volumenu na datum " << date << ":" << std::endl;
+    for (int i = 0; i < n; ++i) {
+        std::cout << stocks[i].ticker << " : " << stocks[i].volume << std::endl;
+    }
+}
+
+// 14. Dohvati 5 dionica s najnižim završnim cijenama kroz cijeli skup podataka
+void stockDatabase::printLowestCloseStocks() const {
+    std::vector<std::pair<std::string, long double>> allCloses;
+
+    for (const auto& [date, vector] : dateIndex) {
+        for (const auto& data : vector) {
+            allCloses.emplace_back(data.ticker, data.close);
+        }
+    }
+
+    std::sort(allCloses.begin(), allCloses.end(),
+              [](const auto& a, const auto& b) { return a.second < b.second; });
+
+    std::set<std::string> lowestCloseStocks;
+    int count = 0;
+    for (const auto& [ticker, close] : allCloses) {
+        if (lowestCloseStocks.find(ticker) == lowestCloseStocks.end()) {
+            std::cout << ticker << " : " << close << std::endl;
+            lowestCloseStocks.insert(ticker);
+            ++count;
+            if (count == 5) break;
+        }
+    }
+    if (count == 0) {
+        std::cout << "Nema podataka." << std::endl;
+    }
+}
+
+// 15. Održavaj popis 5 dionica s najvećim isplaćenim dividendama tijekom cijelog razdoblja skupa podataka
+void stockDatabase::printTopDividendStocks() const {
+    std::unordered_map<std::string, long double> totalDividends;
+    for (const auto& [date, vector] : dateIndex) {
+        for (const auto& data : vector) {
+            totalDividends[data.ticker] += data.dividends;
+        }
+    }
+
+    std::vector<std::pair<std::string, long double>> allDividends(
+        totalDividends.begin(), totalDividends.end()
+    );
+
+    std::sort(allDividends.begin(), allDividends.end(),
+              [](const auto& a, const auto& b) { return a.second > b.second; });
+
+    int count = 0;
+    for (const auto& [ticker, dividend] : allDividends) {
+        std::cout << ticker << " : " << dividend << std::endl;
+        ++count;
+        if (count == 5) break;
+    }
+    if (count == 0) {
+        std::cout << "Nema podataka." << std::endl;
+    }
+}
+
+// Rucni unos tickera u skup podataka
+void stockDatabase::manualInsertRecord() {
+    stockData novi;
+    std::cout << "Unesi datum (GGGG-MM-DD): ";
+    std::cin >> novi.date;
+    std::cout << "Unesi ticker: ";
+    std::cin >> novi.ticker;
+    std::cout << "Unesi open cijenu: ";
+    std::cin >> novi.open;
+    std::cout << "Unesi high cijenu: ";
+    std::cin >> novi.high;
+    std::cout << "Unesi low cijenu: ";
+    std::cin >> novi.low;
+    std::cout << "Unesi close cijenu: ";
+    std::cin >> novi.close;
+    std::cout << "Unesi volumen: ";
+    std::cin >> novi.volume;
+    std::cout << "Unesi dividendu: ";
+    std::cin >> novi.dividends;
+    std::cout << "Unesi stock splits: ";
+    std::cin >> novi.stockSplits;
+
+    dateIndex[novi.date].push_back(novi);
+
+    std::cout << "Zapis dodan" << std::endl;
+}
