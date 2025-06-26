@@ -9,6 +9,7 @@
 extern const std::unordered_set<std::string> blacklist;
 
 struct stockData {
+    std::string date;
     std::string ticker;
     double open;
     long double high;
@@ -49,7 +50,34 @@ public:
     size_t countDatesWithCloseAbove(long double threshold) const;
 
     // 7. Dohvati završnu cijenu određene dionice za određeni datum
+    long double getCloseForTickerOnDate(const std::string& ticker, std::string& date) const;
 
+    // 8. Prikaži sve datume i odgovarajuće završne cijene za određenu dionicu
+    void printDateAndCloseForTicker(const std::string& ticker) const;
+
+    // 9. Izračunaj ukupni volumen trgovanja za određenu dionicu kroz cijeli skup podataka
+    long double totalVolumeForTicker(const std::string& ticker) const;
+
+    // 10. Provjeri ima li podataka za određeni datum i određenu dionicu
+    bool existsRecord(const std::string& ticker, const std::string& date) const;
+
+    // 11. Dohvati cijene otvaranja i zatvaranja za određenu dionicu i datum u konstantnom vremenu.
+    std::pair<long double, long double> getOpenAndClose(const std::string& ticker, const std::string& date) const;
+
+    // 12. Pronađi iznos dividendi isplacenih za određenu dionicu na određeni datum
+    long double dividendForTickerOnDate(const std::string& ticker, const std::string& date) const;
+
+    // 13. Pronađi 10 dionica s najvećim volumenom trgovanja na određeni datum
+    void top10ByVolume(const std::string& date) const;
+
+    // 14. Dohvati 5 dionica s najnižim završnim cijenama kroz cijeli skup podataka
+    void printLowestCloseStocks() const;
+
+    // 15. Održavaj popis 5 dionica s najvećim isplaćenim dividendama tijekom cijelog razdoblja skupa podataka
+    void printTopDividendStocks() const;
+
+    // Rucni unos tickera u skup podataka
+    void manualInsertRecord();
 };
 
 #endif //STOCKDATABASE_HPP
