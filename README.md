@@ -1,7 +1,3 @@
-# Stock Ticker Analyzer
-
-<br></br>
-
 ## Zadaci i rezultati
 
 ### Ucitavanje CSV-a
@@ -182,3 +178,53 @@ Podaci postoje za TSLA na datum 2024-11-04.
 Vrijeme ucitavanja za opciju 10: 0 ms
 ```
 
+### 11. Dohvati cijene otvaranja i zatvaranja za određenu dionicu i datum u konstantnom vremenu.
+
+```
+Unesi izbor: 11
+Unesi ticker: AAPL
+Unesi datum (GGGG-MM-DD): 2024-10-10
+Cijena otvaranja za AAPL na 2024-10-10 je: 227.78
+Cijena zatvaranja za AAPL na 2024-10-10 je: 229.04
+Vrijeme ucitavanja za opciju 11: 0 ms
+```
+
+### 12. Pronađi iznos dividendi isplacenih za određenu dionicu na određeni datum.
+
+```
+Unesi izbor: 12
+Unesi ticker: TOPS
+Unesi datum (GGGG-MM-DD): 2006-04-12
+Dividenda za TOPS na datum 2006-04-12 je: 1000
+Vrijeme ucitavanja za opciju 12: 0 ms
+```
+
+### 13. Pronađi 10 dionica s najvećim volumenom trgovanja na određeni datum.
+
+```
+
+```
+
+### 14. Dohvati 5 dionica s najnižim završnim cijenama kroz cijeli skup podataka.
+
+```
+
+```
+
+### 15. Održavaj popis 5 dionica s najvećim isplaćenim dividendama tijekom cijelog razdoblja skupa podataka.
+
+```
+Unesi izbor: 15
+PSHG : 13185.4
+OSCUF : 9064.88
+TOPS : 8000
+NTTDF : 6213.5
+GLAE : 5600
+Vrijeme ucitavanja za opciju 15: 3862 ms
+```
+
+### Rucni unos u skup podataka
+
+```
+
+```
