@@ -202,13 +202,32 @@ Vrijeme ucitavanja za opciju 12: 0 ms
 ### 13. Pronađi 10 dionica s najvećim volumenom trgovanja na određeni datum.
 
 ```
-
+Unesi izbor: 13
+Unesi datum (GGGG-MM-DD): 2024-11-04
+Top 10 dionica po volumenu na datum 2024-11-04:
+ELAB : 7.92282e+07
+CTM : 4.54062e+07
+ADN : 3.82813e+07
+ASII : 3.64494e+07
+NVDA : 2.7591e+07
+NUWE : 2.51879e+07
+GSAT : 2.16014e+07
+DJT : 2.07187e+07
+STAF : 2.02874e+07
+SMCI : 1.81587e+07
+Vrijeme ucitavanja za opciju 13: 10 ms
 ```
 
 ### 14. Dohvati 5 dionica s najnižim završnim cijenama kroz cijeli skup podataka.
 
 ```
-
+Unesi izbor: 14
+PTPIF : -8.21004e+25
+NPPXF : -4.29042e+19
+TETAB : -1.91784e+12
+FANUF : -5.12811e+09
+PPERF : -8.12967e+07
+Vrijeme ucitavanja za opciju 14: 45138 ms
 ```
 
 ### 15. Održavaj popis 5 dionica s najvećim isplaćenim dividendama tijekom cijelog razdoblja skupa podataka.
@@ -221,10 +240,4 @@ TOPS : 8000
 NTTDF : 6213.5
 GLAE : 5600
 Vrijeme ucitavanja za opciju 15: 3862 ms
-```
-
-### Rucni unos u skup podataka
-
-```
-
 ```
