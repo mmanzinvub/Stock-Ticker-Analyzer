@@ -13,10 +13,9 @@
 ``Unesi izbor: 1``
 
 ``Unesi datum (GGGG-MM-DD): 2024-11-04``
-
-``Svi zapisi za datum 2024-11-04 (6174 zapisa):``
-
-``ZKIN | Open: 0.505 | High: 0.54 | Low: 0.5002 | Close: 0.5292 | Volume: 8234 | Dividends: 0 | Stock Splits: 0
+```
+Svi zapisi za datum 2024-11-04 (6174 zapisa):
+ZKIN | Open: 0.505 | High: 0.54 | Low: 0.5002 | Close: 0.5292 | Volume: 8234 | Dividends: 0 | Stock Splits: 0
 LDWY | Open: 3.45 | High: 3.45 | Low: 3.45 | Close: 3.45 | Volume: 455 | Dividends: 0 | Stock Splits: 0
 PPBT | Open: 3.2 | High: 3.21 | Low: 3.08 | Close: 3.14 | Volume: 238784 | Dividends: 0 | Stock Splits: 0
 TOL | Open: 148.74 | High: 150 | Low: 146.7 | Close: 149.72 | Volume: 61576 | Dividends: 0 | Stock Splits: 0
@@ -25,7 +24,8 @@ SNBR | Open: 12.8 | High: 13.28 | Low: 12.46 | Close: 13.27 | Volume: 20664 | Di
 PD | Open: 18.22 | High: 18.48 | Low: 18.18 | Close: 18.256 | Volume: 27093 | Dividends: 0 | Stock Splits: 0
 MMA | Open: 2.35 | High: 2.3999 | Low: 2.21 | Close: 2.295 | Volume: 7455 | Dividends: 0 | Stock Splits: 0
 CGEM | Open: 15.72 | High: 15.72 | Low: 15.36 | Close: 15.36 | Volume: 8381 | Dividends: 0 | Stock Splits: 0
-PAX | Open: 11.65 | High: 11.84 | Low: 11.625 | Close: 11.8 | Volume: 68866 | Dividends: 0 | Stock Splits: 0``
+PAX | Open: 11.65 | High: 11.84 | Low: 11.625 | Close: 11.8 | Volume: 68866 | Dividends: 0 | Stock Splits: 0
+```
 
 ``Vrijeme ucitavanja za opciju 1: 60 ms``
 
@@ -57,7 +57,8 @@ PAX | Open: 11.65 | High: 11.84 | Low: 11.625 | Close: 11.8 | Volume: 68866 | Di
 
 ``Unesi izbor: 4``
 
-``Jedinstveni tickeri (9315)
+```
+Jedinstveni tickeri (9315)
 CHKEL
 GRAMW
 LGNZZ
@@ -84,7 +85,8 @@ WHLRL
 GECCM
 TMDIF
 GEHDY
-RBCP``
+RBCP
+```
 
 ``Vrijeme ucitavanja za opciju 4: 4858 ms``
 
@@ -107,3 +109,44 @@ RBCP``
 ``Broj datuma s barem jednom dionicom cija je close cijena iznad 500 je: 11265``
 
 ``Vrijeme ucitavanja za opciju 6: 14 ms``
+
+### 7. Dohvati završnu cijenu određene dionice za određeni datum
+
+``Unesi izbor: 7``
+
+``Unesi ticker koji zelis provjeriti: MSFT``
+
+``Unesi datum (GGGG-MM-DD): 2024-06-06``
+
+``Zavrsna cijena za MSFT na 2024-06-06 je 424.52``
+
+``Vrijeme ucitavanja za opciju 7: 0 ms``
+
+### 8. Prikaži sve datume i odgovarajuće završne cijene za određenu dionicu.
+
+``Unesi izbor: 8``
+
+``Unesi ticker za koji zelis ispisati sve datume i zavrsne cijene: AAPL``
+```
+2024-11-04 : 220.78
+2024-10-31 : 225.91
+2024-10-25 : 231.41
+2024-10-24 : 230.57
+2024-10-23 : 230.76
+2024-10-21 : 236.48
+2024-10-17 : 232.15
+2024-10-16 : 231.78
+2024-10-10 : 229.04
+2024-10-08 : 225.77
+2024-09-30 : 233
+2024-09-20 : 228.2
+2024-09-19 : 228.87
+2024-09-11 : 222.66
+2024-09-10 : 220.11
+2024-09-09 : 220.91
+2024-09-06 : 220.82
+2024-09-05 : 222.38
+itd.
+```
+
+### 9. Izračunaj ukupni volumen trgovanja za određenu dionicu kroz cijeli skup podataka
