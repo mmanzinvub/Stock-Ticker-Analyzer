@@ -310,14 +310,9 @@ int main() {
                 break;
             }
             case -1: {
-                auto start = std::chrono::high_resolution_clock::now();
 
                 db.manualInsertRecord();
 
-                auto end = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-
-                std::cout << "Vrijeme ucitavanja za opciju -1: " << duration << " ms" << std::endl;
                 break;
             }
             case 0:
