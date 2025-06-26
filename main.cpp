@@ -5,14 +5,14 @@
 int main() {
     stockDatabase db;
 
-    auto start = std::chrono::high_resolution_clock::now();
+    auto start_load = std::chrono::high_resolution_clock::now();
 
     // max 34646259
     db.loadCSV("../all_stock_data.csv", 34646259);
 
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-    std::cout << "Vrijeme ucitavanja CSV-a: " << duration << " ms" << std::endl;
+    auto end_load = std::chrono::high_resolution_clock::now();
+    auto duration_load = std::chrono::duration_cast<std::chrono::milliseconds>(end_load - start_load).count();
+    std::cout << "Vrijeme ucitavanja CSV-a: " << duration_load << " ms" << std::endl;
 
     // Menu
     int choice;
