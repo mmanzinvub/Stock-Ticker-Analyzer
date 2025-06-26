@@ -10,10 +10,12 @@
 ---
 
 ### 1. Prikazi sve dionice za uneseni datum
-``Unesi izbor: 1``
 
-``Unesi datum (GGGG-MM-DD): 2024-11-04``
 ```
+Unesi izbor: 1
+
+Unesi datum (GGGG-MM-DD): 2024-11-04
+
 Svi zapisi za datum 2024-11-04 (6174 zapisa):
 ZKIN | Open: 0.505 | High: 0.54 | Low: 0.5002 | Close: 0.5292 | Volume: 8234 | Dividends: 0 | Stock Splits: 0
 LDWY | Open: 3.45 | High: 3.45 | Low: 3.45 | Close: 3.45 | Volume: 455 | Dividends: 0 | Stock Splits: 0
@@ -25,39 +27,44 @@ PD | Open: 18.22 | High: 18.48 | Low: 18.18 | Close: 18.256 | Volume: 27093 | Di
 MMA | Open: 2.35 | High: 2.3999 | Low: 2.21 | Close: 2.295 | Volume: 7455 | Dividends: 0 | Stock Splits: 0
 CGEM | Open: 15.72 | High: 15.72 | Low: 15.36 | Close: 15.36 | Volume: 8381 | Dividends: 0 | Stock Splits: 0
 PAX | Open: 11.65 | High: 11.84 | Low: 11.625 | Close: 11.8 | Volume: 68866 | Dividends: 0 | Stock Splits: 0
-```
 
-``Vrijeme ucitavanja za opciju 1: 60 ms``
+Vrijeme ucitavanja za opciju 1: 60 ms
+```
 
 ### 2. Izračunaj prosječnu završnu cijenu određene dionice u cijelom skupu podataka
 
-``Unesi izbor: 2``
+```
+Unesi izbor: 2
 
-``Unesi ticker dionice: AAPL``
+Unesi ticker dionice: AAPL
 
-``Prosjecna zavrsna cijena za AAPL je 23.0262 (11066 zapisa)``
+Prosjecna zavrsna cijena za AAPL je 23.0262 (11066 zapisa)
 
-``Vrijeme ucitavanja za opciju 2: 2192 ms``
+Vrijeme ucitavanja za opciju 2: 2192 ms
+```
+
 
 ### 3. Pronađi najvišu cijenu za određenu dionicu u zadanom vremenskom razdoblju.
 
-``Unesi izbor: 3``
+```
+Unesi izbor: 3
 
-``Unesi ticker dionice: MSFT``
+Unesi ticker dionice: MSFT
 
-``Unesi pocetni datum (GGGG-MM-DD): 1986-03-13``
+Unesi pocetni datum (GGGG-MM-DD): 1986-03-13
 
-``Unesi zavrsni datum (GGGG-MM-DD): 2024-11-04``
+Unesi zavrsni datum (GGGG-MM-DD): 2024-11-04
 
-``Najvisa cijena za MSFT od 1986-03-13 do 2024-11-04 je 468.35``
+Najvisa cijena za MSFT od 1986-03-13 do 2024-11-04 je 468.35
 
-``Vrijeme ucitavanja za opciju 3: 1040 ms``
+Vrijeme ucitavanja za opciju 3: 1040 ms
+```
 
 ### 4. Identificiraj sve jedinstvene oznake dionica u skupu podataka
 
-``Unesi izbor: 4``
-
 ```
+Unesi izbor: 4
+
 Jedinstveni tickeri (9315)
 CHKEL
 GRAMW
@@ -86,48 +93,55 @@ GECCM
 TMDIF
 GEHDY
 RBCP
-```
 
-``Vrijeme ucitavanja za opciju 4: 4858 ms``
+
+Vrijeme ucitavanja za opciju 4: 4858 ms
+```
 
 ### 5. Provjeri postoji li određena oznaka dionice u skupu podataka
 
-``Unesi izbor: 5``
+```
+Unesi izbor: 5
 
-``Unesi ticker koji zelis provjeriti: IBM``
+Unesi ticker koji zelis provjeriti: IBM
 
-``Ticker IBM postoji u skupu podataka``
+Ticker IBM postoji u skupu podataka
 
-``Vrijeme ucitavanja za opciju 5: 0 ms``
+Vrijeme ucitavanja za opciju 5: 0 ms
+```
 
 ### 6. Izbroji broj datuma kada je barem jedna dionica imala završnu cijenu iznad određenog praga.
 
-``Unesi izbor: 6``
+```
+Unesi izbor: 6
 
-``Unesi prag za zavrsnu cijenu (close): 500``
+Unesi prag za zavrsnu cijenu (close): 500
 
-``Broj datuma s barem jednom dionicom cija je close cijena iznad 500 je: 11265``
+Broj datuma s barem jednom dionicom cija je close cijena iznad 500 je: 11265
 
-``Vrijeme ucitavanja za opciju 6: 14 ms``
+Vrijeme ucitavanja za opciju 6: 14 ms
+```
 
 ### 7. Dohvati završnu cijenu određene dionice za određeni datum
 
-``Unesi izbor: 7``
+```
+Unesi izbor: 7
 
-``Unesi ticker koji zelis provjeriti: MSFT``
+Unesi ticker koji zelis provjeriti: MSFT
 
-``Unesi datum (GGGG-MM-DD): 2024-06-06``
+Unesi datum (GGGG-MM-DD): 2024-06-06
 
-``Zavrsna cijena za MSFT na 2024-06-06 je 424.52``
+Zavrsna cijena za MSFT na 2024-06-06 je 424.52
 
-``Vrijeme ucitavanja za opciju 7: 0 ms``
+Vrijeme ucitavanja za opciju 7: 0 ms
+```
 
 ### 8. Prikaži sve datume i odgovarajuće završne cijene za određenu dionicu.
 
-``Unesi izbor: 8``
-
-``Unesi ticker za koji zelis ispisati sve datume i zavrsne cijene: AAPL``
 ```
+Unesi izbor: 8
+
+Unesi ticker za koji zelis ispisati sve datume i zavrsne cijene: AAPL
 2024-11-04 : 220.78
 2024-10-31 : 225.91
 2024-10-25 : 231.41
@@ -150,3 +164,21 @@ itd.
 ```
 
 ### 9. Izračunaj ukupni volumen trgovanja za određenu dionicu kroz cijeli skup podataka
+
+```
+Unesi izbor: 9
+Unesi ticker za koji zelis izracunati ukupni volumen trgovanja: AAPL
+Ukupni volumen trgovanja za AAPL je: 3.50166e+12
+Vrijeme ucitavanja za opciju 9: 1095 ms
+```
+
+### 10. Provjeri ima li podataka za određeni datum i određenu dionicu.
+
+```
+Unesi izbor: 10
+Unesi ticker: TSLA
+Unesi datum (GGGG-MM-DD): 2024-11-04
+Podaci postoje za TSLA na datum 2024-11-04.
+Vrijeme ucitavanja za opciju 10: 0 ms
+```
+
