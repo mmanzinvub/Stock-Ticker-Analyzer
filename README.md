@@ -1,3 +1,6 @@
+## CSV
+https://www.kaggle.com/datasets/jakewright/9000-tickers-of-stock-market-data-full-history/data
+
 ## Zadaci i rezultati
 
 ### Ucitavanje CSV-a
